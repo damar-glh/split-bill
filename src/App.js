@@ -26,11 +26,11 @@ const App = () => {
   return (
     <div className="app">
       <div className="sidebar">
-        <FriendList friends={friends} onSelected={handleSelectedFriend}/>
+        <FriendList friends={friends} onSelected={handleSelectedFriend} selectedFriend={selectedFriend}/>
         {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend}/>}
         <button className='button' onClick={handleShowAddFriend}>{showAddFriend ? "Close Friend's" : "Add Friend's"}</button>
       </div>
-      {selectedFriend && <FormSplitBills />}
+      {selectedFriend && <FormSplitBills selectedFriend={selectedFriend}/>}
     </div>
   )
 }
