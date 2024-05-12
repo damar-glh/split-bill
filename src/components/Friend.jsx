@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Friend = ({ friend }) => {
+const Friend = ({ friend, onSelected }) => {
     return (
         <li>
             <img src={friend.image} alt={friend.name} />
@@ -16,7 +16,7 @@ const Friend = ({ friend }) => {
                 </p>
             )}
             {friend.balance === 0 && (<p>You and {friend.name} have no debt.</p>)}
-            <button className='button'>Choose</button>
+            <button className='button' onClick={() => onSelected(friend)}>Choose</button>
         </li>
     )
 }
