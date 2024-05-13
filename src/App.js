@@ -23,6 +23,21 @@ const App = () => {
     setShowAddFriend(false);
   }
 
+  function handleSplitBill(value) {
+    setFriends(
+      friends.map((friend) => {
+        if (friend.id === selectedFriend?.id) {
+          return {
+            ...friend,
+            balance: friend.balance + value,
+          };
+        }
+        return friend;
+      })
+    );
+    setSelectedFriend(null);
+  }
+
   return (
     <div className="app">
       <div className="sidebar">
@@ -30,7 +45,7 @@ const App = () => {
         {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend}/>}
         <button className='button' onClick={handleShowAddFriend}>{showAddFriend ? "Close Friend's" : "Add Friend's"}</button>
       </div>
-      {selectedFriend && <FormSplitBills selectedFriend={selectedFriend}/>}
+      {selectedFriend && <FormSplitBills selectedFriend={selectedFriend} onSplitBill={handleSplitBill}/>}
     </div>
   )
 }

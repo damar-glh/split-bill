@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
 
-const FormSplitBills = ({ selectedFriend }) => {
+const FormSplitBills = ({ selectedFriend, onSplitBill }) => {
   const [amount, setAmount] = useState("");
   const [myBill, setMyBill] = useState("");
   const friendBill = amount ? amount - myBill : "";
   const [whoIsPaying, setWhoIsPaying] = useState("user");
 
+  function handleSubmit(e){
+    e.preventDefault();
+    if (!amount || !myBill) return;
+    onSplitBill(whoIsPaying === "user" ? friendBill : -myBill);
+  }
+
   return (
-    <form action="" className='form-split-bill'>
+    <form action="" className='form-split-bill' onSubmit={handleSubmit}>
         <h2>Split Bills with {selectedFriend.name}</h2>
         <label htmlFor="">💵 Total Cost</label>
         <input type="text" placeholder='Enter Cost' value={amount} onChange={(e) => setAmount(e.target.value)}/>
